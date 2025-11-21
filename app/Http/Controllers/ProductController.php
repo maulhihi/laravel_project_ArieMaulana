@@ -14,13 +14,13 @@ class ProductController extends Controller
      */
     public function index(Request $request): View
 {
-    $products = Product::with('categories')
+    $products = Product::with('category')
         ->when($request->search, function($query) use ($request) {
             $query->where('nama', 'like', '%' . $request->search . '%');
         })
         ->paginate(10);
 
-    return view('product.index', compact('product'));
+    return view('products.index', compact('products'));
 }
 
 
@@ -31,7 +31,7 @@ class ProductController extends Controller
     public function create(): View
 {
     $categories = Category::all();
-    return view('product.create', compact('categories'));
+    return view('products.create', compact('categories'));
 }
 
 
@@ -46,7 +46,7 @@ class ProductController extends Controller
         'stok' => 'required|numeric',
         'deskripsi' => 'nullable|string',
         'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-        'kategori_id' => 'required|exists:categories,id',
+        'category_id' => 'required|exists:categories,id',
     ]);
 
     // Upload foto
@@ -58,11 +58,11 @@ class ProductController extends Controller
         'harga' => $request->harga,
         'stok' => $request->stok,
         'deskripsi' => $request->deskripsi,
-        'kategori_id' => $request->kategori_id,
+        'category_id' => $request->category_id,
         'foto' => $fotoPath
     ]);
 
-    return redirect()->route('product.index')
+    return redirect()->route('products.index')
         ->with('success', 'Produk berhasil ditambahkan.');
 }
 
@@ -74,7 +74,7 @@ class ProductController extends Controller
     public function edit(Product $product): View
 {
     $categories = Category::all();
-    return view('product.edit', compact('product', 'categories'));
+    return view('products.edit', compact('product', 'categories'));
 }
 
 
@@ -89,7 +89,7 @@ class ProductController extends Controller
         'stok' => 'required|integer|min:0',
         'deskripsi' => 'nullable|string',
         'foto' => 'nullable|image|max:2048',
-        'kategori_id' => 'required|exists:categories,id',
+        'category_id' => 'required|exists:categories,id',
     ]);
 
     $data = $request->except('foto');
@@ -107,7 +107,7 @@ class ProductController extends Controller
 
     $product->update($data);
 
-    return redirect()->route('product.index')
+    return redirect()->route('products.index')
         ->with('success', 'Produk berhasil diperbarui.');
 }
 
@@ -119,7 +119,7 @@ class ProductController extends Controller
 {
     $product->delete();
 
-    return redirect()->route('product.index')
+    return redirect()->route('products.index')
         ->with('success', 'Produk berhasil dihapus.');
 }
 

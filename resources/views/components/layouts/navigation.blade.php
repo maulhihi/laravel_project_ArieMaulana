@@ -1,4 +1,4 @@
-{{-- <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -97,7 +97,7 @@
             </div>
         </div>
     </div>
-</nav> --}}
+</nav>
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
 <div class="container">
 <a class="navbar-brand fw-bold text-primary" href="#">TokoKu</a>

@@ -15,11 +15,11 @@ class Product extends Model
         "deskripsi",
         "harga",
         "stok",
-        "kategori_id",
+        "category_id",
     ];
 
-    public function kategori()
+    public function category()
     {
-        return $this->belongsTo(Category::class, 'kategori_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }
