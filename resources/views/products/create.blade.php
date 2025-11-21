@@ -70,18 +70,18 @@
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class="bx bx-category"></i></span>
 
-                                <select name="kategori_id" class="form-select @error('kategori_id') is-invalid @enderror">
+                                <select name="category_id" class="form-select @error('category_id') is-invalid @enderror">
                                     <option value="">-- Pilih Kategori --</option>
 
                                     @foreach($categories as $category)
                                         <option value="{{ $category->id }}"
-                                            {{ old('kategori_id') == $category->id ? 'selected' : '' }}>
+                                            {{ old('category_id') == $category->id ? 'selected' : '' }}>
                                             {{ $category->nama }}
                                         </option>
                                     @endforeach
                                 </select>
 
-                                @error('kategori_id')
+                                @error('category_id')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>

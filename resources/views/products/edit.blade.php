@@ -52,15 +52,15 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Kategori</label>
                         <div class="col-sm-10">
-                            <select name="kategori_id" class="form-select @error('kategori_id') is-invalid @enderror">
+                            <select name="category_id" class="form-select @error('category_id') is-invalid @enderror">
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}"
-                                        {{ $product->kategori_id == $category->id ? 'selected' : '' }}>
+                                        {{ (old('category_id', $product->category_id) == $category->id) ? 'selected' : '' }}>
                                         {{ $category->nama }}
                                     </option>
                                 @endforeach
                             </select>
-                            @error('kategori_id')
+                            @error('category_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
